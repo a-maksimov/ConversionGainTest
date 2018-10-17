@@ -1,0 +1,29 @@
+\documentclass[columnsxxiv,columnsxxvii,pointsubsection,emptystyle]{eskdtext}
+
+\input{packages}			% пакеты
+\input{data}				% данные документа ЕСКД
+\input{styles}				% настройки стиля
+\input{setup}				% настройки документа
+
+%\externaldocument{../../source/TU}
+\graphicspath{{images/}}
+
+\begin{document}
+	
+	\newcommand{\file}{../Protocol/gain_flatness.csv} % данные протокола
+	
+	\input{shortnames}		% сокращения
+	
+	\maketitle
+	
+	\newpage
+	
+	\section{Результаты проверки}
+	\label{results}
+	\input{results}
+	
+	\section{Заключение по результатам проверки}
+	\label{conclusion}
+	\input{conclusion}
+
+\end{document}

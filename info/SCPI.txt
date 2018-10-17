@@ -1,0 +1,24 @@
+Combine multiple commands into one string using selmicolon ';'. For example, a combined string of "TRIG1:SOUR CH1" and "TRIG1:LEV2 3.5" is "TRIG1:SOUR CH1;LEV 2". Notice that the second command does not have the "TRIG1:" part. 
+The reason is, that the command tree path does not change within one string. If you want to reset the command tree path to the root, use the colon character at the beginning of the second command: "TRIG1:SOUR CH1;:CHAN2:STATe ON".
+
+Create query forms by adding a question mark, mostly to the end: "TRIG1:LEV2?" Sometimes there is an additional parameter placed after the question mark. 
+There must be a space character between the question mark and the additional parameter. For example: "TRACE:DATA? ALL"
+
+Numeric parameters without specifying the units are considered based units. In our case, the numeric parameter 3.5 means 3.5 Volts.
+
+As a general rule, send commands and queries in different program messages.
+
+To prevent an overlapping execution of commands, one of the commands *OPC,
+*OPC? or *WAI can be used. All three commands cause a certain action only to be
+carried out after the hardware has been set. By suitable programming, the controller
+can be forced to wait for the corresponding action to occur.
+
+Always operate an acquisition instrument (Oscilloscope, Spectrum Analyzer, Powermeter…) in single acquisition mode. 
+Only then, you can be sure your measurement results come from the last completed acquisition, not from the one before or from the not yet completed acquisition. 
+Most importantly: any synchronization method works properly only in the single acquisition mode.
+
+Basic settings and Trigger settings do not need to be synchronized. The only important key point comes at the end where you want to make sure all the settings have been applied (SyncPoint ‘SettingsApplied’).
+
+After the trigger has arrived, the oscilloscope starts waveform acquisition. Your program must wait until it has finished (SyncPoint ‘AcquisitionFinished’).
+
+Reading the waveform after this SyncPoint makes sure the result comes from the most recent acquisition.

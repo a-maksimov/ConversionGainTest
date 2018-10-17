@@ -1,0 +1,21 @@
+\begingroup
+	\centering
+	\setcounter{rowcount}{0}
+	\setcounter{colcount}{0}
+	\small
+	\renewcommand{\arraystretch}{1.5}
+	\begin{longtabu}{@{}|X[0.5cm]|X[cm]|X[cm]|@{}}
+	\captionsetup{labelformat=default}	
+	\caption{ }\label{t:characteristics}\\
+	\hline
+	Канал & Неравномерность коэффициента усиления, дБ & Требование по ТЗ, дБ, не более \\ \hline
+	\endfirsthead
+	%
+	\captionsetup{labelformat=continued,skip=3pt}
+	\caption[]{ }\\
+	\hline
+	Канал & Неравномерность коэффициента усиления, дБ & Требование по ТУ, дБ, не более \\ \hline
+	\endhead
+	\csvreader[no head,table head=\hline,late after line=\\ \hline]{\file}{}{\thecsvrow & \csvcoli &\flatness}%
+	\end{longtabu}
+\endgroup
